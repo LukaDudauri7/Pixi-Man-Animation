@@ -9,9 +9,9 @@ PIXI.Assets.load([
     const middleground = PIXI.Sprite.from("scene/middleground.png");
     app.stage.addChild(middleground);
 
-    const bo = PIXI.Sprite.from("Bo.png")
-    bo.position.set(1400, 310); // Set position as needed
-    app.stage.addChild(bo);
+    // const bo = PIXI.Sprite.from("Bo.png")
+    // bo.position.set(1400, 310);
+    // app.stage.addChild(bo);
 
     app.stage.scale.x = app.view.width / background.width;
     app.stage.scale.y = app.view.height / background.height;
@@ -41,10 +41,9 @@ PIXI.Assets.load([
     app.ticker.add(delta => {
         if (isMoving) {
             character.x = (character.x + movementSpeed * delta + 400) % (background.width + 800) - 400;
-            if (character.x >= 1000) {
+            if (character.x >= 1100) {
                 character.stop();
                 isMoving = false;
-                alert('ბო მიყვარხარ გუსი!!!')
             }
         }
     });
