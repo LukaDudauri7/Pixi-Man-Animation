@@ -8,6 +8,11 @@ PIXI.Assets.load([
     app.stage.addChild(background);
     const middleground = PIXI.Sprite.from("scene/middleground.png");
     app.stage.addChild(middleground);
+
+    const bo = PIXI.Sprite.from("Bo.png")
+    bo.position.set(1400, 310); // Set position as needed
+    app.stage.addChild(bo);
+
     app.stage.scale.x = app.view.width / background.width;
     app.stage.scale.y = app.view.height / background.height;
 
@@ -19,6 +24,7 @@ PIXI.Assets.load([
     
     let isMoving = false;
     const movementSpeed = 6;
+
     // Event listener for keydown events
     window.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowUp') character.y -= 50;
@@ -32,10 +38,14 @@ PIXI.Assets.load([
             character.stop();
         }
     });
-    // Animation loop
     app.ticker.add(delta => {
         if (isMoving) {
             character.x = (character.x + movementSpeed * delta + 400) % (background.width + 800) - 400;
+            if (character.x >= 1000) {
+                character.stop();
+                isMoving = false;
+                alert('ბო მიყვარხარ გუსი!!!')
+            }
         }
     });
 
