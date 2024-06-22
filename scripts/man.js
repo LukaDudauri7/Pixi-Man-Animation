@@ -1,9 +1,6 @@
 const app = new PIXI.Application({ width: 960, height: 540});
 document.body.appendChild(app.view);
-PIXI.Assets.load([
-    "../character.json",
-    "scene/background.png"
-]).then(() => {
+PIXI.Assets.load(["../character.json", "scene/background.png"]).then(() => {
     const background = PIXI.Sprite.from("scene/background.png");
     app.stage.addChild(background);
     const middleground = PIXI.Sprite.from("scene/middleground.png");
@@ -12,7 +9,6 @@ PIXI.Assets.load([
     // const bo = PIXI.Sprite.from("Bo.png")
     // bo.position.set(1400, 310);
     // app.stage.addChild(bo);
-
     app.stage.scale.x = app.view.width / background.width;
     app.stage.scale.y = app.view.height / background.height;
 
@@ -36,15 +32,16 @@ PIXI.Assets.load([
         } else if (event.key === 'ArrowLeft') {
             isMoving = false;
             character.stop();
+            character.x -= 50;
         }
     });
     app.ticker.add(delta => {
         if (isMoving) {
             character.x = (character.x + movementSpeed * delta + 400) % (background.width + 800) - 400;
-            if (character.x >= 1100) {
-                character.stop();
-                isMoving = false;
-            }
+            // if (character.x >= 1100) {
+            //     character.stop();
+            //     isMoving = false;
+            // }
         }
     });
 
