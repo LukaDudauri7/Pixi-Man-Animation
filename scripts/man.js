@@ -45,4 +45,25 @@ PIXI.Assets.load(["../character.json", "scene/background.png"]).then(() => {
         }
     });
 
+        // Function to resize the canvas and scale the stage
+        function resize() {
+            const parent = app.view.parentNode;
+            app.renderer.resize(parent.clientWidth, parent.clientHeight);
+    
+            const scaleX = parent.clientWidth / background.width;
+            const scaleY = parent.clientHeight / background.height;
+    
+            const scale = Math.min(scaleX, scaleY);
+            app.stage.scale.set(scale);
+    
+            background.x = (app.screen.width - background.width * scale) / 2;
+            background.y = (app.screen.height - background.height * scale) / 2;
+        }
+    
+        // Add event listener to handle window resize
+        window.addEventListener('resize', resize);
+    
+        // Initial resize to set up the canvas correctly
+        resize();
+
 });
